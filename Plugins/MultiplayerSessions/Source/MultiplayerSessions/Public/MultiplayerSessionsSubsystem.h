@@ -30,6 +30,7 @@ public:
 	//
 	// To handle session functionality. The Menu class will call these
 	//
+	void Initialize(FSubsystemCollectionBase& Collection) override;
 	void CreateSession(int32 NumPublicConnections, FString MatchType);
 	void FindSessions(int32 MaxSearchResults);
 	void JoinSession(const FOnlineSessionSearchResult& SessionResult);

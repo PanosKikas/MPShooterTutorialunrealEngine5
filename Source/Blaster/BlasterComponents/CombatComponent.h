@@ -28,8 +28,17 @@ protected:
 	UFUNCTION()
 	void OnRep_EquippedWeapon();
 
+	void SetFiring(bool bFiring);
+
+	UFUNCTION(Server, Reliable)
+	void ServerFire();
+
+	UFUNCTION(NetMulticast, Reliable)
+	void MulticastFire();
+	
 private:
-	class ABlasterCharacter* Character;
+	UPROPERTY()
+	TObjectPtr<ABlasterCharacter> Character;
 
 	UPROPERTY(ReplicatedUsing = OnRep_EquippedWeapon)
 	AWeapon* EquippedWeapon;
@@ -42,6 +51,8 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	float AimWalkSpeed;
+
+	bool bFireButtonPressed;
 
 public:	
 		
