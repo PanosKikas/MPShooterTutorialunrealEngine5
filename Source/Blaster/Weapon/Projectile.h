@@ -6,7 +6,9 @@
 #include "GameFramework/Actor.h"
 #include "Projectile.generated.h"
 
+class UProjectileMovementComponent;
 class UBoxComponent;
+class UParticleSystem;
 
 UCLASS()
 class BLASTER_API AProjectile : public AActor
@@ -21,7 +23,16 @@ protected:
 
 private:
 	UPROPERTY(EditAnywhere)
-	UBoxComponent* CollisionBox;
+	TObjectPtr<UBoxComponent> CollisionBox;
+	
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UProjectileMovementComponent> ProjectileMovement;
+	
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UParticleSystem> Tracer;
+	
+	UPROPERTY()	
+	TObjectPtr<UParticleSystemComponent> TracerComponent;
 public:
 	virtual void Tick(float DeltaTime) override;
 };
