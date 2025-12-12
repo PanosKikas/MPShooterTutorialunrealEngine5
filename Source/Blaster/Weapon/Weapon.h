@@ -62,6 +62,9 @@ private:
 
 	UPROPERTY(EditAnywhere, Category="Weapon Properties")
 	TObjectPtr<UAnimationAsset> FireAnimation;
+	
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<class ACasing> CasingClass;
 public:	
 	virtual void Tick(float DeltaTime) override;
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
