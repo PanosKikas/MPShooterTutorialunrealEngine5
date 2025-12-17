@@ -4,7 +4,6 @@
 #include "Weapon.h"
 
 #include "Casing.h"
-#include "Projectile.h"
 #include "Components/SphereComponent.h"
 #include "Components/WidgetComponent.h"
 #include "Blaster/Character/BlasterCharacter.h"
@@ -126,12 +125,14 @@ void AWeapon::Fire(const FVector& HitTarget)
 		{
 			const FTransform SocketTransform = AmmoEjectSocket->GetSocketTransform(GetWeaponMesh());
 
+			const FRotator RandomRotation = FRotator(0.f, FMath::FRandRange(-50.f, 0.f), 0.f);
+			const FRotator SpawnRotation = SocketTransform.GetRotation().Rotator() + RandomRotation;
 			if (UWorld* World = GetWorld())
 			{
 				World->SpawnActor<ACasing>(
 					CasingClass,
 					SocketTransform.GetLocation(),
-					SocketTransform.GetRotation().Rotator()
+					SpawnRotation
 				);
 			}
 		}
