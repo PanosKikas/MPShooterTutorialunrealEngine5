@@ -6,6 +6,8 @@
 #include "GameFramework/Actor.h"
 #include "Weapon.generated.h"
 
+class UTexture2d;
+
 UENUM(BlueprintType)
 enum class EWeaponState : uint8
 {
@@ -23,6 +25,24 @@ class BLASTER_API AWeapon : public AActor
 	
 public:	
 	AWeapon();
+	/*
+	* Textures for the weapon crosshairs
+	*/
+	UPROPERTY(EditAnywhere, Category = Crosshairs)
+	TObjectPtr<UTexture2D> CrosshairsCenter;
+	
+	UPROPERTY(EditAnywhere, Category = Crosshairs)
+	TObjectPtr<UTexture2D> CrosshairsLeft;
+	
+	UPROPERTY(EditAnywhere, Category = Crosshairs)
+	TObjectPtr<UTexture2D> CrosshairsRight;
+	
+	UPROPERTY(EditAnywhere, Category = Crosshairs)
+	TObjectPtr<UTexture2D> CrosshairsTop;
+	
+	UPROPERTY(EditAnywhere, Category = Crosshairs)
+	TObjectPtr<UTexture2D> CrosshairsBottom;
+	
 protected:
 	virtual void BeginPlay() override;
 
@@ -65,6 +85,7 @@ private:
 	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<class ACasing> CasingClass;
+
 public:	
 	virtual void Tick(float DeltaTime) override;
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;

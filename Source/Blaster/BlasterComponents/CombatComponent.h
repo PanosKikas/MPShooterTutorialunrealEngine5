@@ -7,7 +7,9 @@
 #include "CombatComponent.generated.h"
 
 #define TRACE_LENGTH 80000
+class ABlasterHUD;
 class ABlasterCharacter;
+class ABlasterPlayerController;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class BLASTER_API UCombatComponent : public UActorComponent
@@ -41,13 +43,22 @@ protected:
 	
 	void TraceUnderCrosshairs(FHitResult& TraceHitResult);
 	
+	void SetHUDCrosshairs(float DeltaTime);
+	
 private:
 	UPROPERTY()
 	TObjectPtr<ABlasterCharacter> Character;
-
+	
+	UPROPERTY()
+	ABlasterPlayerController* Controller;
+	
+	UPROPERTY()
+	ABlasterHUD* HUD;
+	
 	UPROPERTY(ReplicatedUsing = OnRep_EquippedWeapon)
-	AWeapon* EquippedWeapon;
+	TObjectPtr<AWeapon> EquippedWeapon;
 
+	
 	UPROPERTY(Replicated)
 	bool bAiming;
 

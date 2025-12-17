@@ -16,6 +16,7 @@ Build
 **/MarketplaceAssets
 **/BlasterMapMeshes
 .vscode
+*.vsconfig
 .vs
 *.VC.db
 *.opensdf
@@ -25,3 +26,4 @@ Build
 *.suo
 *.xcodeproj
 *.xcworkspace
+*.uproject.DotSettings.user
